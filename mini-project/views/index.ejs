@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="w-full h-screen bg-[#DFD0B8] p-10">
+        <h1 class="text-3xl mb-3 text-[#222831]">Create User</h1>
+        <form action="/create" method="post">
+            <input class="px-3 py-2 rounded-md bg-transparent border-1 border-[#948979] outline-none bg-[#948979]/20" type="text" placeholder="username" name="username">
+            <input class="px-3 py-2 rounded-md bg-transparent border-1 border-[#948979] outline-none bg-[#948979]/20" type="email" placeholder="email" name="email">
+            <input class="px-3 py-2 rounded-md bg-transparent border-1 border-[#948979] outline-none bg-[#948979]/20" type="password" placeholder="password" name="password">
+            <input class="px-3 py-2 rounded-md bg-transparent border-1 border-[#948979] outline-none bg-[#948979]/20" type="number" placeholder="age" name="age">
+            <input class="px-6 py-2 rounded-md bg-[#393e46] text-[#dfd0b8] cursor-pointer hover:bg-[#222831]" type="submit" value="Create User" >
+        </form>
+    </div>
+</body>
+</html>
