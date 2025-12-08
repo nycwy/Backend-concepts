@@ -1,10 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 function App() {
   const [length, setLength] = useState(8);
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
+
+  const passwordRef = useRef(null);
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
@@ -20,6 +22,12 @@ function App() {
     setPassword(pass);
   }, [length, numberAllowed, charAllowed, setPassword]);
 
+  const copyPasswordToClipboard = useCallback(() => {
+    passwordRef.current?.select();
+    passwordRef.current?.setSelectionRange(0, 14);
+    window.navigator.clipboard.writeText(password);
+  },[password])
+
   useEffect(() => {
     passwordGenerator(); // eslint-disable-line
   }, [length, numberAllowed, charAllowed, passwordGenerator]);
@@ -30,13 +38,17 @@ function App() {
         <h1 className="text-white text-center my-3">Password Generator</h1>
         <div className="flex shadow rounded-lg overflow-hidden mb-4">
           <input
+            ref={passwordRef}
             type="text"
             value={password}
             className="outline-none w-full py-1 px-3 bg-white text-gray-700"
             placeholder="Password"
             readOnly
           />
-          <button className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0">
+          <button
+            className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0"
+            onClick={copyPasswordToClipboard}
+          >
             Copy
           </button>
         </div>
@@ -56,7 +68,7 @@ function App() {
             <input
               type="checkbox"
               defaultChecked={numberAllowed}
-              id='numberInput'
+              id="numberInput"
               onChange={() => setNumberAllowed((prev) => !prev)}
             />
             <label htmlFor="numberInput">Numbers</label>
@@ -65,7 +77,7 @@ function App() {
             <input
               type="checkbox"
               defaultChecked={charAllowed}
-              id='charInput'
+              id="charInput"
               onChange={() => setCharAllowed((prev) => !prev)}
             />
             <label htmlFor="charInput">Character</label>
