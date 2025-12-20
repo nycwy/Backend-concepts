@@ -10,6 +10,7 @@ import User from './components/User/User.jsx'
 import Github from './components/Github/Github.jsx'
 import { githubInfoLoader } from './components/Github/githubInfoLoader.js'
 
+// RECOMMENDED!!
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
