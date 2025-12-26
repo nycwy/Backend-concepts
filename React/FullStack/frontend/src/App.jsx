@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <h2>Jokes Fetching From own DB</h2>
+      <h2>Jokes Fetching From Random Data</h2>
       <p>Jokes: {jokes.length}</p>
       {jokes.map((joke) => (
         <div key={joke.id}>
