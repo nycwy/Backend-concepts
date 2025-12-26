@@ -1,20 +1,36 @@
 import { useEffect, useState } from "react"
-import axios from 'axios'
+// import axios from 'axios'
 
 function App() {
 
   const [jokes, setJokes] = useState([]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/jokes")
+  //     .then((response) => {
+  //       setJokes(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [])
+
   useEffect(() => {
-    axios
-      .get("/api/jokes")
+    fetch("/api/jokes")
       .then((response) => {
-        setJokes(response.data);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setJokes(data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [])
+  }, []);
 
   return (
     <>
